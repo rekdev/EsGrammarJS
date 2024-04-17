@@ -3,6 +3,7 @@
 	"version": "0.1.1",
 	"description": "Small library for checking the spelling and grammar of Spanish words in JavaScript.",
 	"type": "module",
+	"main": "esgrammar.js",
 	"scripts": {
 		"test": "jest",
 		"format": "prettier --write .",
