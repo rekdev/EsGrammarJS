@@ -4,6 +4,7 @@
 	"description": "Small library for checking the spelling and grammar of Spanish words in JavaScript.",
 	"type": "module",
 	"main": "esgrammar.js",
+	"license": "GPL-3.0-only",
 	"scripts": {
 		"test": "jest",
 		"format": "prettier --write .",
