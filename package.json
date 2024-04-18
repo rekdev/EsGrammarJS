@@ -4,7 +4,6 @@
 	"description": "Small library for checking the spelling and grammar of Spanish words in JavaScript.",
 	"type": "module",
 	"main": "esgrammar.js",
-	"license": "GPL-3.0-only",
 	"scripts": {
 		"test": "jest",
 		"format": "prettier --write .",
@@ -12,6 +11,7 @@
 	},
 	"keywords": ["grammar", "spelling", "spanish"],
 	"author": "Angel Cardenas",
+	"license": "GPL-3.0-only",
 	"devDependencies": {
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
