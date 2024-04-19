@@ -411,7 +411,7 @@ async function analyseWordList(wordList) {
 	const wordsAnalysed = []
 
 	for (let i = 0; i < wordList.length; i++) {
-		const wordItem = wordList[i]
+		const wordItem = wordList[i].trim()
 		const wd = new Word(wordItem)
 
 		wordsAnalysed.push({
@@ -434,7 +434,7 @@ async function analyseWordList(wordList) {
  */
 async function analyseText(text) {
 	const pattern = /[\p{Punctuation}\p{Symbol}]|\n|\./gu
-	const wordList = text.replace(pattern, '').split(/\s+/)
+	const wordList = text.trim().replace(pattern, '').split(/\s+/)
 
 	return await analyseWordList(wordList)
 }
