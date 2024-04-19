@@ -133,6 +133,7 @@ function isConsonantGroup(x) {
 		'ch',
 		'ps',
 		'rr',
+		'fl',
 	]
 
 	return consonantGroups.includes(x.toLowerCase())
