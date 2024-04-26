@@ -31,14 +31,11 @@ function hasVowels(x) {
 	]
 	let value = false
 
-	for (let i = 0; i < x.length; i++) {
-		const letter = x[i]
-
+	x.split('').forEach(letter => {
 		if (vowels.includes(letter.toLowerCase())) {
 			value = true
-			break
 		}
-	}
+	})
 
 	return value
 }
@@ -97,14 +94,11 @@ function hasConsonants(x) {
 	]
 	let value = false
 
-	for (let i = 0; i < x.length; i++) {
-		const letter = x[i]
-
+	x.split('').forEach(letter => {
 		if (consonants.includes(letter.toLowerCase())) {
 			value = true
-			break
 		}
-	}
+	})
 
 	return value
 }
@@ -243,7 +237,8 @@ class Word {
 				(this._closedVowels.includes(letter) &&
 					this._openVowelsAccented.includes(nextLetter)) ||
 				(this._umlauts.includes(letter) && this._vowels.includes(nextLetter)) ||
-				(['u', 'U'].includes(letter) && ['i', 'I'].includes(nextLetter))
+				(['u', 'U'].includes(letter) &&
+					['i', 'I', 'í', 'Í'].includes(nextLetter))
 			) {
 				mergedVowels.push(letter + nextLetter)
 				i++
@@ -334,21 +329,13 @@ class Word {
 			this._vowels.includes(lastLetter)
 		) {
 			tonicIndex = syllablesLen - 2 >= 0 ? syllablesLen - 2 : 0
-		} else {
-			tonicIndex = syllablesLen - 1 >= 0 ? syllablesLen - 1 : 0
-		}
+		} else tonicIndex = syllablesLen - 1 >= 0 ? syllablesLen - 1 : 0
 
-		for (let i = 0; i < this.syllables.length; i++) {
-			const syllable = this.syllables[i]
-
-			for (let j = 0; j < syllable.length; j++) {
-				const letter = syllable[j]
-
-				if (this._accentedVowels.includes(letter)) {
-					tonicIndex = i
-				}
-			}
-		}
+		this.syllables.forEach((syllable, index) => {
+			syllable.split('').forEach(letter => {
+				if (this._accentedVowels.includes(letter)) tonicIndex = index
+			})
+		})
 
 		return tonicIndex
 	}
@@ -376,17 +363,11 @@ class Word {
 			(this._getTonicSyllableByIndex() - this.syllables.length) * -1
 		let wordType = null
 
-		if (this.syllables.length === 1) {
-			wordType = 'monosilaba'
-		} else if (typeByNumber === 1) {
-			wordType = 'oxitona'
-		} else if (typeByNumber === 2) {
-			wordType = 'paroxitona'
-		} else if (typeByNumber === 3) {
-			wordType = 'proparoxitona'
-		} else if (typeByNumber > 3) {
-			wordType = 'superproparoxitona'
-		}
+		if (this.syllables.length === 1) wordType = 'monosilaba'
+		else if (typeByNumber === 1) wordType = 'oxitona'
+		else if (typeByNumber === 2) wordType = 'paroxitona'
+		else if (typeByNumber === 3) wordType = 'proparoxitona'
+		else if (typeByNumber > 3) wordType = 'superproparoxitona'
 
 		return wordType
 	}
